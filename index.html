@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Numbered Random User Generator </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+</head>
+<body class="m-3">
+    <h1 class="jumbotron text-center"> Numbered Random User Generator </h1>
+    <div class="container col">
+        <div class="row">
+            <div class="form-group row mb-2 mt-2"> 
+                <input class="col form-control me-2" type="number" id="number-of-users" name="number-of-users" placeholder="Enter number of random users" min="1" max="1000" required>
+                <button type="button" class="col-2 btn btn-primary" id="button"> Generate Users </button>
+                <p class="col align-middle text-end" id="testnumber"> </p>
+            </div>
+        </div>
+        <div class="table-container row">
+            <table class="table table-bordered">
+                <thead>
+                    <tr> 
+                        <th> 
+                            <select class="form-select fw-bold align-middle" name="name-option" id="name-option"> 
+                                <option value="first-name" class="name-select-option"> First Name </option>
+                                <option value="last-name" class="name-select-option"> Last Name </option>
+                            </select> 
+                        </th>
+                        <th> Gender </th>
+                        <th> Email Address </th>
+                        <th> Country </th>
+                    </tr>
+                </thead>
+            <tbody class="table-group-divider" id="table-body">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"> </script>
+</body>
+</html>
