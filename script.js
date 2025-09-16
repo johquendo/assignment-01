@@ -3,6 +3,7 @@ const button = document.querySelector('#button');
 const nameOption = document.querySelector('#name-option');
 const testnumber = document.querySelector('#testnumber');
 const tableBody = document.querySelector('#table-body');
+
 const userPicture = document.querySelector('#user-picture');
 const userName = document.querySelector('#user-name');
 const userAddress = document.querySelector('#user-address');
@@ -11,8 +12,10 @@ const userPhoneNumber = document.querySelector('#user-pnumber');
 const userTelephoneNumber = document.querySelector('#user-tnumber');
 const userBirthdate = document.querySelector('#user-birthdate');
 const userGender = document.querySelector('#user-gender');
+
 const confirmDelete = document.querySelector('#confirm');
 const cancelDelete = document.querySelector('#cancel');
+
 const editUser = document.querySelector('#edit-user');
 const deleteUser = document.querySelector('#delete-user');
 const confirmEdit = document.querySelector('#confirm-edit');
@@ -56,7 +59,6 @@ const addRow = (name, gender, emailAddress, country) => {
     tableBody.append(newRow);
 
     newRow.classList.add("table-bordered");
-
 };
 
 const selectedNameOption = (nameOption) => {
@@ -147,21 +149,22 @@ button.addEventListener("click", () => {
         testnumber.textContent = `no user${slashSymbol}s generated`;
         throw new Error("Invalid Input");
     } else {
-        fetch(`https://randomuser.me/api/?results=${userNumber}`)
+        fetch(`http://localhost:3000/api/?results=${userNumber}`)
     .then(response => {
         if (!response.ok) {
             throw new Error("Network Error");
         }
         return response.json();
     }).then(data => {
-        userData = data.results;
+        userData = data;
         console.log(userData);
         return userData;
     }).then(data => {
     for (let i = 0; i < userNumber; i++) {
         let currentUser = data[i];
         let selectedName = selectedNameOption(nameOptionValue);
-        addRow(currentUser.name[selectedName], currentUser.gender.split("")[0].toUpperCase() + currentUser.gender.split("").slice(1).join(""), currentUser.email, currentUser.location.country);
+        addRow(currentUser.name[selectedName], currentUser.gender.split("")[0].toUpperCase() + currentUser.gender.split("").slice(1).join(""), 
+        currentUser.email, currentUser.location.country);
     }}).catch(error => {
         alert(error);
     })
@@ -178,7 +181,8 @@ nameOption.addEventListener("change", (event) => {
     for (let i = 0; i < userNumber; i++) {
         let currentUser = userData[i];
         let selectedName = selectedNameOption(nameOptionValue);
-        addRow(currentUser.name[selectedName], currentUser.gender.split("")[0].toUpperCase() + currentUser.gender.split("").slice(1).join(""), currentUser.email, currentUser.location.country);
+        addRow(currentUser.name[selectedName], currentUser.gender.split("")[0].toUpperCase() + currentUser.gender.split("").slice(1).join(""), 
+        currentUser.email, currentUser.location.country);
 }});
 
 numberOfRandomUsers.addEventListener("keydown", (event) => {
@@ -242,7 +246,8 @@ confirmEdit.addEventListener("click", () => {
     for (let i = 0; i < userNumber; i++) {
         let currentUser = userData[i];
         let selectedName = selectedNameOption(nameOptionValue);
-        addRow(currentUser.name[selectedName], currentUser.gender.split("")[0].toUpperCase() + currentUser.gender.split("").slice(1).join(""), currentUser.email, currentUser.location.country);
+        addRow(currentUser.name[selectedName], currentUser.gender.split("")[0].toUpperCase() + currentUser.gender.split("").slice(1).join(""), 
+        currentUser.email, currentUser.location.country);
     disableFields();
     hideEditButtons();
 };});
